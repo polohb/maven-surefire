@@ -2205,7 +2205,27 @@ public abstract class AbstractSurefireMojo
             {
                 if ( classpathElement != null )
                 {
-                    Collections.addAll( classpath, split( classpathElement, "," ) );
+                    String[] classpathSubElementTab = split( classpathElement, "," );
+                    for ( String classpathSubElement : classpathSubElementTab ) 
+                    {
+                        if ( classpathSubElement.endsWith( "/*" ) ) 
+                        {
+                            String folderName = classpathSubElement.substring( 0, classpathElement.length() - 1 );
+                            File dir = new File( folderName );
+                            File[] filesList = dir.listFiles();
+                            for ( File file : filesList ) 
+                            {
+                                if ( file.isFile() )
+                                {
+                                    classpath.add( file.getAbsolutePath() );
+                                }
+                            }
+                        } 
+                        else 
+                        {
+                            classpath.add( classpathSubElement );
+                        }
+                    }
                 }
             }
         }
