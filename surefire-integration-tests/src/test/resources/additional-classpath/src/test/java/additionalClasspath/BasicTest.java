@@ -19,16 +19,25 @@ package additionalClasspath;
  * under the License.
  */
 
+import java.io.File;
+import java.net.URLClassLoader;
+import java.net.URL;
 import junit.framework.TestCase;
 
-public class BasicTest
-    extends TestCase
-{
+public class BasicTest extends TestCase {
 
-    public void testExtraResource()
-    {
-        assertNotNull( BasicTest.class.getResourceAsStream( "/test.txt" ) );
-        assertNotNull( BasicTest.class.getResourceAsStream( "/test2.txt" ) );
+  public void testExtraResource() {
+    assertNotNull(BasicTest.class.getResourceAsStream("/test.txt"));
+    assertNotNull(BasicTest.class.getResourceAsStream("/test2.txt"));
+  }
+
+  public void testExtraJars() {
+    URL[] classpathEntries = ( ( URLClassLoader ) ( Thread.currentThread().getContextClassLoader() ) ).getURLs();
+    boolean founded = true;
+    for (URL element : classpathEntries) {
+      if ( element.getPath().endsWith( "faked1.jar" ) || element.getPath().endsWith( "faked2.jar" ) ) founded = true;
     }
+    assertTrue( founded );
 
+  }
 }

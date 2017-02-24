@@ -43,10 +43,9 @@
         <configuration>
           <additionalClasspathElements>
             <additionalClasspathElement>${basedir}/extraResource</additionalClasspathElement>
-            <additionalClasspathElement>${abc}, ${basedir}/extraResource2</additionalClasspathElement>
-            <!-- SUREFIRE-694 -->
-            <additionalClasspathElement></additionalClasspathElement>
-            <!-- SUREFIRE-694 -->
+            <additionalClasspathElement>${abc}, ${basedir}/extraResource2</additionalClasspathElement><!-- SUREFIRE-694 -->
+             <additionalClasspathElement></additionalClasspathElement><!-- SUREFIRE-694 -->
+             <additionalClasspathElement>${basedir}/extraJarsResources/*</additionalClasspathElement>
           </additionalClasspathElements>
         </configuration>
       </plugin>

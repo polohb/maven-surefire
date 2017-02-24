@@ -34,6 +34,6 @@ public class AdditionalClasspathIT
     @Test
     public void additionalClasspath()
     {
-        unpack( "/additional-classpath" ).executeTest().verifyErrorFree( 1 );
+        unpack( "/additional-classpath" ).executeTest().verifyErrorFree( 2 );
     }
 }
